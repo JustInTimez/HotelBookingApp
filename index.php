@@ -5,7 +5,7 @@
 <header>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-3">
-        <a class="navbar-brand">Login to Hotels48 South Africa!</a>
+        <a class="navbar-brand">Welcome to Hotels48 South Africa!</a>
     </nav>
     <!-- Navbar END -->
 </header>
