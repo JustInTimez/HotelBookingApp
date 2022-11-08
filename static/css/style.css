@@ -3,6 +3,14 @@
     box-sizing: border-box;
 }
 
+#page-container {
+    position: relative;
+    min-height: 95vh;
+}
+
+#content-wrap {
+    padding-bottom: 221px;
+}
 
 
 
@@ -14,11 +22,14 @@
 
 
 
-
-
+/* Footer section */
 
 .text {
     color: white;
+}
+
+#githubIcon {
+    margin: 20px;
 }
 
 footer {
