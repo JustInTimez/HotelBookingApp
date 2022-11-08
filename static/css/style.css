@@ -12,7 +12,10 @@
     padding-bottom: 221px;
 }
 
-
+#RegNameErr, #RegEmailErr, #RegPassErr {
+    display: none;
+    color: red;
+}
 
 
 
