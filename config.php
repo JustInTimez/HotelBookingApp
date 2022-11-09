@@ -5,10 +5,10 @@ $password = "root";
 $dbname = "booking_app";
 
 // Create connection
-$connect = mysqli_connect($servername, $username, $password, $dbname);
+$connect = new mysqli($servername, $username, $password, $dbname);
 
 // Check connection
-if (!$connect) {
+if ($connect -> connect_error) {
   die("Connection failed: " . mysqli_connect_error());
 }
 echo "Connected successfully to DB named " . $dbname;
