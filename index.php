@@ -17,11 +17,10 @@
             <div class="container text-center">
                 <div class="row">
                     <div class="col-lg-6">Register:
-                        <form action="process.php" method="post" onsubmit="return formValidate()">
+                        <form action="process.php" method="post">
                             <div class="mb-3">
                                 <label for="RegInputName" class="form-label">Name*</label>
                                 <input type="text" name="RegInputName" class="form-control" id="RegInputName" required>
-                                <p id="RegNameErr" class="d-none">Please fill out this field.</p>
                             </div>
                             <div class="mb-3">
                                 <label for="RegInputSurname" class="form-label">Surname</label>
@@ -30,12 +29,10 @@
                             <div class="mb-3">
                                 <label for="RegInputEmail" class="form-label">Email*</label>
                                 <input type="email" name="RegInputEmail" class="form-control" id="RegInputEmail" required>
-                                <p id="RegEmailErr">We need your email address</p>
                             </div>
                             <div class="mb-3">
                                 <label for="RegInputPassword" class="form-label">Password*</label>
                                 <input type="password" name="RegInputPassword" class="form-control" id="RegInputPassword" required>
-                                <p id="RegPassErr"><small>You MUST use a password</small></p>
                             </div>
                             <button type="submit" name='Submit' class="btn btn-dark">Submit</button>
                         </form>
@@ -45,11 +42,11 @@
                         <form action="process.php" method="post">
                             <div class="mb-3">
                                 <label for="InputEmail" class="form-label">Email*</label>
-                                <input type="email" class="form-control" id="InputEmail" required>
+                                <input type="email" class="form-control" name="LoginEmail" id="InputEmail" required>
                             </div>
                             <div class="mb-3">
                                 <label for="InputPassword" class="form-label">Password*</label>
-                                <input type="password" class="form-control" id="InputPassword" required>
+                                <input type="password" class="form-control" name="LoginPassword" id="InputPassword" required>
                             </div>
                             <button type="submit" class="btn btn-dark">Submit</button>
                         </form>
