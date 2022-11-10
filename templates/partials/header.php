@@ -14,16 +14,17 @@ include __DIR__ . "/head.php";
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <!-- Remember to change/update hrefs when/if needed -->
-                    <a class="nav-link" href="#Placeholder">Placeholder</a>
+                    <a class="nav-link" href="#Placeholder">Hotels</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#Placeholder">Placeholder</a>
+                    <!-- This should only be shown to staff users? -->
+                    <a class="nav-link" href="#Placeholder">CMS</a>  
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#Placeholder">Placeholder</a>
+                    <a class="nav-link" href="#Placeholder">What</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="Placeholder">Placeholder</a>
+                    <a class="nav-link" href="Placeholder">The Fuq</a>
                 </li>
             </ul>
         </div>
