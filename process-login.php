@@ -6,26 +6,17 @@ ini_set('display_errors', 'On');
 require_once __DIR__ . "/config.php"; 
 session_start();
 
-
-// Check if the user is already logged in, if yes then redirect them to homepage
-
-if(isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] === true){
-  header("location: /home.php");
-  exit;
-}
-
 // Process login check to database
 // Login form:
 $LoginEmail = trim($_POST['LoginEmail']);
 $LoginPassword = trim($_POST['LoginPassword']);
 
-$query = mysqli_query($connect, "SELECT * FROM users WHERE password = '". $LoginPassword ."'");
+$sql = "SELECT * FROM users WHERE password = '". $LoginPassword ."'";
+$result = $connect->query($sql);
 
-if (!$query){
-    die('Error: ' . mysqli_error($connect));
-}
+if($result->num_rows == 1){
 
-if(mysqli_num_rows($query) > 0){
+  // $user = $result->fetch_assoc();
 
   echo "Matched password, logging in...";
 

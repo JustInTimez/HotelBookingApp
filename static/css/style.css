@@ -8,7 +8,9 @@
     color: red;
 }
 
-
+.hotel-image {
+    object-fit: cover;
+}
 
 
 

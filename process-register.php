@@ -25,8 +25,8 @@ $RegPassword = trim($_POST['RegInputPassword']);
 
 // Performing insert query into DB table users
 
-$sql = "INSERT INTO users (first_name, last_name, email, password) VALUES ('$RegfirstName',
-    '$ReglastName','$RegEmail','$RegPassword')";
+$sql = "INSERT INTO users (first_name, last_name, email, password, role) VALUES ('$RegfirstName',
+    '$ReglastName','$RegEmail','$RegPassword', 'customer')";
     
     if ($connect->query($sql) === TRUE) {
         echo "New record created successfully";
