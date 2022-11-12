@@ -16,8 +16,8 @@ if(isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] === true){
 
 // Process login check to database
 // Login form:
-$LoginEmail = $_POST['LoginEmail'];
-$LoginPassword = $_POST['LoginPassword'];
+$LoginEmail = trim($_POST['LoginEmail']);
+$LoginPassword = trim($_POST['LoginPassword']);
 
 $query = mysqli_query($connect, "SELECT * FROM users WHERE password = '". $LoginPassword ."'");
 

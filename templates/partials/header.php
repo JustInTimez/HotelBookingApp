@@ -1,5 +1,5 @@
 <?php
-include __DIR__ . "/head.php";
+include_once __DIR__ . "/head.php";
 ?>
 
 <header>
@@ -14,17 +14,16 @@ include __DIR__ . "/head.php";
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <!-- Remember to change/update hrefs when/if needed -->
-                    <a class="nav-link" href="#Placeholder">Hotels</a>
+                    <a class="nav-link" href="#Placeholder">View Bookings</a>
                 </li>
                 <li class="nav-item">
-                    <!-- This should only be shown to staff users? -->
-                    <a class="nav-link" href="#Placeholder">CMS</a>  
+                    <a class="nav-link" href="#Placeholder">Edit Profile</a>  
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#Placeholder">What</a>
+                    <a class="nav-link" href="#Placeholder">Queries</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="Placeholder">The Fuq</a>
+                    <a class="nav-link" href="Placeholder">The Fuq??</a>
                 </li>
             </ul>
         </div>
