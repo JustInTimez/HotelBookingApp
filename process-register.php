@@ -16,10 +16,10 @@ session_start();
 // Process register form inputs to database
 // Register form:
 
-$RegfirstName = $_POST['RegInputName'];
-$ReglastName = $_POST['RegInputSurname'];
-$RegEmail = $_POST['RegInputEmail'];
-$RegPassword = $_POST['RegInputPassword'];
+$RegfirstName = trim($_POST['RegInputName']);
+$ReglastName = trim($_POST['RegInputSurname']);
+$RegEmail = trim($_POST['RegInputEmail']);
+$RegPassword = trim($_POST['RegInputPassword']);
 
 
 

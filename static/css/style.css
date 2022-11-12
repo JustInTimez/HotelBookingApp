@@ -3,15 +3,6 @@
     box-sizing: border-box;
 }
 
-#page-container {
-    position: relative;
-    min-height: 95vh;
-}
-
-#content-wrap {
-    padding-bottom: 221px;
-}
-
 #RegNameErr, #RegEmailErr, #RegPassErr {
     display: none;
     color: red;
@@ -37,7 +28,5 @@
 
 footer {
     background-color: #212529;
-    position: absolute;
-    bottom: 0;
     width: 100%;
 }
