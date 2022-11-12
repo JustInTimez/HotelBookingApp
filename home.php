@@ -8,6 +8,9 @@ include_once __DIR__ . "./templates/partials/header.php";
 $sql = "SELECT name, image, address, price, capacity, description FROM hotels";
 $result = $connect->query($sql);         // Storing hotel info in a variable
 
+// Close connection
+mysqli_close($connect);
+
 ?>
 
 
