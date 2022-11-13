@@ -2,19 +2,15 @@
 <html lang="en">
 <?php
 
+require __DIR__ . "./model/Hotels.php";
 include __DIR__ . "./templates/partials/header.php";
-include_once __DIR__ . "./processes/config.php";
+include __DIR__ . "./processes/config.php";
 
-$sql = "SELECT id, name, image, address, price, capacity, description, has_wifi, has_ac, has_parking, is_petfriend, has_pool, is_accessible, rating FROM hotels";
-
-// Storing hotel info in a variable
+$sql = "SELECT id FROM hotels";
 $result = $connect->query($sql);
-
-// print_r($_SESSION['LoggedInUser']);
 
 // Close connection
 mysqli_close($connect);
-
 ?>
 
 
@@ -33,8 +29,9 @@ mysqli_close($connect);
         <div class="row row-cols-1 row-cols-lg-3 g-5 m-0">
             <?php
             while ($row = $result->fetch_assoc()) {
+                $hotel = new Hotel($row["id"]);
                 $facilities = [
-                'has_wifi' => ['show' => $row['has_wifi'], 'icon' => 'wifi-solid.svg'], 
+                'has_wifi' => ['show' => $hotel->has_wifi, 'icon' => 'wifi-solid.svg'], 
                 'has_ac' => ['show' => $row['has_ac'], 'icon' => 'snowflake-solid.svg'], 
                 'has_parking' => ['show' => $row['has_parking'], 'icon' => 'square-parking-solid.svg'], 
                 'is_petfriend' =>  ['show' => $row['is_petfriend'], 'icon' => 'paw-solid.svg'], 
@@ -51,45 +48,55 @@ mysqli_close($connect);
                 echo '
                         <div class="col-12 col-xl-6 col-md-6">
                             <div class="card border-dark bg-dark text-white shadow h-100">
-                                <img src="./static/images/hotels/' . $row["image"] . '" height="270" class="card-img-top hotel-image" alt="' . $row["name"] . '">
+                                <img src="./static/images/hotels/' . $hotel->image . '" height="270" class="card-img-top hotel-image" alt="' . $hotel->name . '">
                                 <div class="card-body">
-                                <h5 class="card-title">' . $row["name"] . '</h5>
+                                <h5 class="card-title">' . $hotel->name . '</h5>
                                     <div class="d-flex" >
                                         <div class="d-flex flex-column">
                                             <p class="card-text small">Facilities</p>
                                             <div>' . $facilityIcons . '</div>
                                             
                                             <div class="mt-5">
-                                            <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#hotelModal'. $row["id"] . '">
+                                            <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#hotelModal'. $hotel->id . '">
                                             See Details
                                             </button>
 
                                             </div>
                                         </div>
                                         <div class="d-flex flex-column align-items-end flex-fill justify-content-end">
-                                        <p class="display-5 lh-1 mb-1">R '. $row["price"] . '</p><span class="small mb-0">per night (sleeps: '. $row["capacity"] . ')</span>
+                                        <p class="display-5 lh-1 mb-1">R '. $hotel->price . '</p><span class="small mb-0">per night (sleeps: '. $hotel->capacity . ')</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
                             <!-- Modal -->
-                            <div class="modal fade" id="hotelModal'. $row["id"] . '" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal fade" id="hotelModal'. $hotel->id . '" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
-                                <form>
+                                <form action="./processes/process-booking.php" method="post">
                                     <div class="modal-header">
-                                        <h1 class="modal-title fs-5">' . $row["name"] . '</h1>
+                                        <h1 class="modal-title fs-5">' . $hotel->name . '</h1>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <img src="./static/images/hotels/' . $row["image"] . '" height="270" class="card-img-top hotel-image" alt="' . $row["name"] . '">
+                                        <img src="./static/images/hotels/' . $hotel->image . '" height="270" class="card-img-top hotel-image" alt="' . $hotel->name . '">
                                         <div>
                                         <p class="fs-5">More from Hotel:</p>
                                         <div class="inverseIcons">' . $facilityIcons . '</div>
-                                        <p>' . $row["description"] . '</p>
-                                        <p class="display-5 lh-1 mb-1">R '. $row["price"] . '</p><span class="small mb-0">per night (sleeps: '. $row["capacity"] . ')</span>
-                                        
+                                        <p>' . $hotel->description . '</p>
+                                        <p class="display-5 lh-1 mb-1">R '. $hotel->price . '</p><span class="small mb-0">per night (sleeps: '. $hotel->capacity . ')</span>
+
+                                        <p class="fs-5">Make your reservation at this Hotel!</p>
+
+                                        <div class="row">
+                                            <div class="col">Check In:
+                                            <input type="date" class="form-control" placeholder="Date In" aria-label="CheckIn">
+                                            </div>
+                                            <div class="col">Check Out:
+                                            <input type="date" class="form-control" placeholder="Date Out" aria-label="CheckOut">
+                                            </div>
+                                        </div>                                        
                                         </div>
                                     </div>
                                     <div class="modal-footer">
