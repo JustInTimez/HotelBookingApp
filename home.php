@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
-require_once __DIR__ . "/config.php";
-include_once __DIR__ . "./templates/partials/head.php";
-include_once __DIR__ . "./templates/partials/header.php";
 
-$sql = "SELECT name, image, address, price, capacity, description, has_wifi, has_ac, has_parking, is_petfriend, has_pool, is_accessible, rating FROM hotels";
+include __DIR__ . "./templates/partials/header.php";
+include_once __DIR__ . "./processes/config.php";
+
+$sql = "SELECT id, name, image, address, price, capacity, description, has_wifi, has_ac, has_parking, is_petfriend, has_pool, is_accessible, rating FROM hotels";
 
 // Storing hotel info in a variable
 $result = $connect->query($sql);
+
+// print_r($_SESSION['LoggedInUser']);
 
 // Close connection
 mysqli_close($connect);
@@ -49,17 +51,19 @@ mysqli_close($connect);
                 echo '
                         <div class="col-12 col-xl-6 col-md-6">
                             <div class="card border-dark bg-dark text-white shadow h-100">
-                                <img src="./static/images/hotels/' . $row["image"] . '" height="270" class="card-img-top hotel-image" alt="">
+                                <img src="./static/images/hotels/' . $row["image"] . '" height="270" class="card-img-top hotel-image" alt="' . $row["name"] . '">
                                 <div class="card-body">
-                                <h5 class="card-title">' . $row["name"] . ' </h5>
+                                <h5 class="card-title">' . $row["name"] . '</h5>
                                     <div class="d-flex" >
                                         <div class="d-flex flex-column">
                                             <p class="card-text small">Facilities</p>
-                                            <div> ' . $facilityIcons . ' </div>
+                                            <div>' . $facilityIcons . '</div>
                                             
                                             <div class="mt-5">
-                                                <a href="" target="_blank" class="btn btn-light mt-auto">Book</a>
-                                                <a href="" target="_blank" class="btn btn-light mt-auto">Details</a>
+                                            <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#hotelModal'. $row["id"] . '">
+                                            See Details
+                                            </button>
+
                                             </div>
                                         </div>
                                         <div class="d-flex flex-column align-items-end flex-fill justify-content-end">
@@ -68,6 +72,34 @@ mysqli_close($connect);
                                     </div>
                                 </div>
                             </div>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="hotelModal'. $row["id"] . '" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                <form>
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5">' . $row["name"] . '</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <img src="./static/images/hotels/' . $row["image"] . '" height="270" class="card-img-top hotel-image" alt="' . $row["name"] . '">
+                                        <div>
+                                        <p class="fs-5">More from Hotel:</p>
+                                        <div class="inverseIcons">' . $facilityIcons . '</div>
+                                        <p>' . $row["description"] . '</p>
+                                        <p class="display-5 lh-1 mb-1">R '. $row["price"] . '</p><span class="small mb-0">per night (sleeps: '. $row["capacity"] . ')</span>
+                                        
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" type="submit" name="submit" class="btn btn-dark">Make a Booking</button>
+                                    </div>
+                                </form>
+                                </div>
+                            </div>
+                            </div>                         
+
                         </div>';
             }
             ?>

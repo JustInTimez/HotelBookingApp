@@ -15,7 +15,7 @@
     <div class="container text-center">
         <div class="row">
             <div class="col-lg-6">Register:
-                <form action="process-register.php" method="post">
+                <form action="./processes/process-register.php" method="post">
                     <div class="mb-3">
                         <label for="RegInputName" class="form-label">Name*</label>
                         <input type="text" name="RegInputName" class="form-control" id="RegInputName" required>
@@ -37,7 +37,7 @@
             </div>
 
             <div class="col-lg-6">Customer/Staff Login:
-                <form action="process-login.php" method="post">
+                <form action="./processes/process-login.php" method="post">
                     <div class="mb-3">
                         <label for="InputEmail" class="form-label">Email*</label>
                         <input type="email" class="form-control" name="LoginEmail" id="InputEmail" required>
