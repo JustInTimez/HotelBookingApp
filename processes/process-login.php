@@ -3,7 +3,7 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 'On');
 
-require_once __DIR__ . "/config.php"; 
+require __DIR__ . "./config.php"; 
 session_start();
 
 // Process login check to database
@@ -16,14 +16,18 @@ $result = $connect->query($sql);
 
 if($result->num_rows == 1){
 
-  // $user = $result->fetch_assoc();
 
+  $user = $result->fetch_assoc();
+  $_SESSION['LoggedInUser'] = $user;
+
+
+  // ************ Take out all echo tests such as this one below before HAND IN!! *********** //
   echo "Matched password, logging in...";
 
   // Close connection
   mysqli_close($connect);
 
-  header("Location: ./home.php");
+  header("Location: ../home.php");
   exit();
 
 } else{
@@ -34,6 +38,6 @@ if($result->num_rows == 1){
   // Close connection
   mysqli_close($connect);
 
-  header("Location: ./index.php");
+  header("Location: ../index.php");
   exit();
 }
