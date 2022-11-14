@@ -4,11 +4,20 @@
 
 include __DIR__ . "./templates/header.php";
 
+User::userDisplay();
+
 ?>
 
 
 
 <body>
     
+
+
+
+
+
+
+
 </body>
 </html>
