@@ -1,6 +1,7 @@
 <?php
 include __DIR__ . "./processes/sessions.php";
 session_start();
+
 // Enable error reporting
 error_reporting(E_ALL);
 ini_set('display_errors', 'On');
@@ -23,7 +24,7 @@ ini_set('display_errors', 'On');
     <link rel="manifest" href="./static/images/favicon/site.webmanifest">
 
     <title>Hotels48 South Africa - Western Cape</title>
-    <meta name="description" content="View, compare and book! This Hotel booking site was made with MySQL, PHP, JS and Bootstrap!">
+    <meta name="description" content="View, compare and book! This Hotel booking site was made with PHP, MySQL, JS and Bootstrap!">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="./static/css/style.css">
     <!-- Custom JS -->

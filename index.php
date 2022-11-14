@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php include __DIR__ . "/templates/head.php"; ?>
+<?php include __DIR__ . "/templates/head.php"; 
+// Check if the user is already logged in, if yes then redirect them to homepage
+if(isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] === true){
+    header("location: home.php");
+    exit;
+}
+  
+
+?>
 
 <header>
     <!-- Navbar -->

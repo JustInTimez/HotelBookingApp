@@ -40,8 +40,8 @@ class Booking {
         $checkOutDate = $_POST['checkOut'];
         $cost = 0;  // For now. Amend to calc cost
 
+        // Performing insert query into DB table bookings
         global $connect;
-
         $sql = "INSERT INTO bookings (customer_id, cost, hotel_id, checkin_date, checkout_date) VALUES ('$userId', '$cost', '$hotelId', '$checkInDate', '$checkOutDate')";
         if ($connect->query($sql) === TRUE) {
             echo "Booking created successfully";
