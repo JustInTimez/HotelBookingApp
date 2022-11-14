@@ -1,5 +1,12 @@
 <?php
 include __DIR__ . "./head.php";
+include __DIR__ . "/../model/User.php";
+
+// Check if the user is already logged in, if yes then redirect them to homepage
+if(isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] === true){
+    header("location: /home.php");
+    exit;
+  }  
 ?>
 
 <header>
@@ -23,7 +30,10 @@ include __DIR__ . "./head.php";
                     <a class="nav-link" href="./edit-profile.php">Edit Profile</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="./queries.php">Queries</a>
+                    <a class="nav-link" href="./cms.php">Queries</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./logout.php">Logout</a>
                 </li>
             </ul>
         </div>
