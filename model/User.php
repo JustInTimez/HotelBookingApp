@@ -114,7 +114,40 @@ class User {
          }
     }
 
+    public static function userDisplay(){
+        global $connect;
+        $sql = "SELECT first_name, last_name, email, contact_no, dob  FROM users";
+        $result = $connect->query($sql);
 
+        if($result) {
+
+            echo '<table>
+            
+            <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Contact Number</th>
+            <th>DOB</th>
+            </tr>';
+
+            while ($row = mysqli_fetch_array($result)) {
+                echo '<tr>
+                <td>' . $row['first_name'] . '</td>
+                <td>' . $row['last_name'] . '</td>
+                <td>' . $row['email'] . '</td>
+                <td>' . $row['contact_no'] . '</td>
+                <td>' . $row['dob'] . '</td>
+                </tr>';
+                
+            }
+            echo '</table>';
+
+        } else {
+            echo "Nah bruh";
+        }
+
+    }
 
 
 

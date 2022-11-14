@@ -62,6 +62,19 @@ class Booking {
             exit();
         }
     }
+
+    
+
+
+
+
+
+
+
+
+
+
+
     // ==================== GETTERS & SETTERS ====================
 
     public function getBooking_id()
