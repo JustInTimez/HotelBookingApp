@@ -2,15 +2,13 @@
 <html lang="en">
 <?php
 
-require __DIR__ . "./model/Hotels.php";
+include __DIR__ . "./model/Hotels.php";
 include __DIR__ . "./templates/partials/header.php";
 include __DIR__ . "./processes/config.php";
 
 $sql = "SELECT id FROM hotels";
 $result = $connect->query($sql);
 
-// Close connection
-mysqli_close($connect);
 ?>
 
 
@@ -32,11 +30,11 @@ mysqli_close($connect);
                 $hotel = new Hotel($row["id"]);
                 $facilities = [
                 'has_wifi' => ['show' => $hotel->has_wifi, 'icon' => 'wifi-solid.svg'], 
-                'has_ac' => ['show' => $row['has_ac'], 'icon' => 'snowflake-solid.svg'], 
-                'has_parking' => ['show' => $row['has_parking'], 'icon' => 'square-parking-solid.svg'], 
-                'is_petfriend' =>  ['show' => $row['is_petfriend'], 'icon' => 'paw-solid.svg'], 
-                'has_pool' =>  ['show' => $row['has_pool'], 'icon' => 'water-ladder-solid.svg'], 
-                'is_accessible' =>  ['show' => $row['is_accessible'], 'icon' => 'wheelchair-solid.svg']];
+                'has_ac' => ['show' => $hotel->has_ac, 'icon' => 'snowflake-solid.svg'], 
+                'has_parking' => ['show' => $hotel->has_parking, 'icon' => 'square-parking-solid.svg'], 
+                'is_petfriend' =>  ['show' => $hotel->is_petfriend, 'icon' => 'paw-solid.svg'], 
+                'has_pool' =>  ['show' => $hotel->has_pool, 'icon' => 'water-ladder-solid.svg'], 
+                'is_accessible' =>  ['show' => $hotel->is_accessible, 'icon' => 'wheelchair-solid.svg']];
 
                 $facilityIcons = "";
                 foreach ($facilities as $key => $value) {

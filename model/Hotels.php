@@ -1,25 +1,27 @@
 <?php
-include __DIR__ . "/../processes/config.php"; 
+include __DIR__ . "../../processes/config.php"; 
 
 class Hotel {
 
     // ========================= FIELDS =========================
 
-    private $id;
-    private $name;
-    private $image;
-    private $address;
-    private $price;
-    private $capacity;
-    private $has_wifi;
-    private $has_ac;
-    private $has_parking;
-    private $is_petfriend;
-    private $has_pool;
-    private $is_accessible;
+    public $id;
+    public $name;
+    public $image;
+    public $address;
+    public $price;
+    public $capacity;
+    public $description;
+    public $has_wifi;
+    public $has_ac;
+    public $has_parking;
+    public $is_petfriend;
+    public $has_pool;
+    public $is_accessible;
     
 
     public function __construct($id){
+        global $connect;
         $sql = "SELECT id, name, image, address, price, capacity, description, has_wifi, has_ac, has_parking, is_petfriend, has_pool, is_accessible, rating FROM hotels WHERE id = $id";
         $result = $connect->query($sql);
         $hotel = $result->fetch_assoc();
@@ -29,6 +31,7 @@ class Hotel {
         $this->address = $hotel['address'];
         $this->price = $hotel['price'];
         $this->capacity = $hotel['capacity'];
+        $this->description = $hotel['description'];
         $this->has_wifi = $hotel['has_wifi'];
         $this->has_ac = $hotel['has_ac'];
         $this->has_parking = $hotel['has_parking'];
@@ -37,7 +40,6 @@ class Hotel {
         $this->is_accessible = $hotel['is_accessible'];
         
     }
-
 
 
     // ========================= METHODS =========================
@@ -191,6 +193,18 @@ class Hotel {
     public function setIs_accessible($is_accessible)
     {
         $this->is_accessible = $is_accessible;
+
+        return $this;
+    }
+
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    public function setDescription($description)
+    {
+        $this->description = $description;
 
         return $this;
     }

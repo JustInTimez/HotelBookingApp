@@ -9,15 +9,23 @@ class User {
     private $lastname;
     private $email;
     private $password;
+    private $contact;
+    private $dob;
+    private $department;
+    private $role;
 
 
-    public function __construct($id, $firstname, $lastname, $email, $password)
+    public function __construct($id, $firstname, $lastname, $email, $password, $contact, $dob, $department, $role)
     {
         $this->id = $id;
         $this->firstname = $firstname;
         $this->lastname = $lastname;
         $this->email = $email;
         $this->password = $password;
+        $this->contact = $contact;
+        $this->dob = $dob;
+        $this->department = $department;
+        $this->role = $role;
     }
 
 
@@ -29,8 +37,6 @@ class User {
     }
 
     // ????????????????????    IDK what to do here yet   ?????????????????????????
-
-    // Why do I need a function to generate ID if database does that for me????????????
 
 
 
@@ -113,6 +119,54 @@ class User {
     public function setPassword($password)
     {
         $this->password = $password;
+
+        return $this;
+    }
+
+    public function getContact()
+    {
+        return $this->contact;
+    }
+
+    public function setContact($contact)
+    {
+        $this->contact = $contact;
+
+        return $this;
+    }
+
+    public function getDob()
+    {
+        return $this->dob;
+    }
+
+    public function setDob($dob)
+    {
+        $this->dob = $dob;
+
+        return $this;
+    }
+
+    public function getDepartment()
+    {
+        return $this->department;
+    }
+
+    public function setDepartment($department)
+    {
+        $this->department = $department;
+
+        return $this;
+    }
+
+    public function getRole()
+    {
+        return $this->role;
+    }
+
+    public function setRole($role)
+    {
+        $this->role = $role;
 
         return $this;
     }
