@@ -1,4 +1,5 @@
 <?php
+include __DIR__ . "./config.php"; 
 
 class User {
 
@@ -36,9 +37,57 @@ class User {
         return $this;
     }
 
-    // ????????????????????    IDK what to do here yet   ?????????????????????????
+    public static function userLogin() {
+
+        $LoginEmail = trim($_POST['LoginEmail']);
+        $LoginPassword = trim($_POST['LoginPassword']);
+        
+        global $connect;
+        
+        $sql = "SELECT * FROM users WHERE password = '". $LoginPassword ."'";
+        $result = $connect->query($sql);
+        
+        if($result->num_rows == 1){
+        
+        
+          $user = $result->fetch_assoc();
+          $_SESSION['LoggedInUser'] = $user;
+        
+        
+          // ************ Take out all echo tests such as this one below before HAND IN!! *********** //
+          echo "Matched password, logging in...";
+        
+          // Close connection
+          mysqli_close($connect);
+        
+          header("Location: ../home.php");
+          exit();
+        
+        } else{
+        
+          // Auth failed so user gets taken back to login page
+          echo "Invalid password or email. Taking you back...";
+        
+          // Close connection
+          mysqli_close($connect);
+        
+          header("Location: ../index.php");
+          exit();
+        }
+    }
+
+    public static function userRegister(){
 
 
+
+
+
+
+
+
+
+
+    }
 
 
 

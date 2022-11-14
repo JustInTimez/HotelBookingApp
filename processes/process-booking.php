@@ -3,7 +3,9 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 'On');
 
-require __DIR__ . "/config.php"; 
 session_start();
+include __DIR__ . "/../model/Bookings.php";
+include __DIR__ . "/config.php";
 
+Booking::createBooking();
 

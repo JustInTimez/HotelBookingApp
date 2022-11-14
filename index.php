@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php include __DIR__ . "/templates/partials/head.php"; ?>
+<?php include __DIR__ . "/templates/head.php"; ?>
 
 <header>
     <!-- Navbar -->
@@ -52,7 +52,7 @@
         </div>
         <p>* Indicates required field</p>
     </div>
-    <?php include __DIR__ . "/templates/partials/footer.php"; ?>
+    <?php include __DIR__ . "/templates/footer.php"; ?>
 </body>
 
 </html>

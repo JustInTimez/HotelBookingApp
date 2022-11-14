@@ -14,16 +14,16 @@ include __DIR__ . "./head.php";
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <!-- Remember to change/update hrefs when/if needed -->
-                    <a class="nav-link" href="#Placeholder">View Bookings</a>
+                    <a class="nav-link" href="./home.php">View Hotels</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#Placeholder">Edit Profile</a>  
+                    <a class="nav-link" href="./view-bookings.php">View Bookings</a>  
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#Placeholder">Queries</a>
+                    <a class="nav-link" href="./edit-profile.php">Edit Profile</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="Placeholder">The Fuq??</a>
+                    <a class="nav-link" href="./queries.php">Queries</a>
                 </li>
             </ul>
         </div>

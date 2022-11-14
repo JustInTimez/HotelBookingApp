@@ -3,7 +3,7 @@
 <?php
 
 include __DIR__ . "./model/Hotels.php";
-include __DIR__ . "./templates/partials/header.php";
+include __DIR__ . "./templates/header.php";
 include __DIR__ . "./processes/config.php";
 
 $sql = "SELECT id FROM hotels";
@@ -88,23 +88,25 @@ $result = $connect->query($sql);
                                         <p class="fs-5">Make your reservation at this Hotel!</p>
 
                                         <div class="row">
-                                            <div class="col">Check In:
-                                            <input type="date" class="form-control" placeholder="Date In" aria-label="CheckIn">
+                                            <div class="col">
+                                            <label for="checkIn" class="form-label">Check In:</label>
+                                            <input type="date" class="form-control" name="checkIn" placeholder="Date In" aria-label="CheckIn" required>
                                             </div>
-                                            <div class="col">Check Out:
-                                            <input type="date" class="form-control" placeholder="Date Out" aria-label="CheckOut">
+                                            <div class="col">
+                                            <label for="checkOut" class="form-label">Check Out:</label>
+                                            <input type="date" class="form-control" name="checkOut" placeholder="Date Out" aria-label="CheckOut" required>
                                             </div>
+                                            <input type="hidden" name="hotelId" value="'. $hotel->id . '">
                                         </div>                                        
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" type="submit" name="submit" class="btn btn-dark">Make a Booking</button>
+                                        <button type="submit" name="Submit" class="btn btn-dark">Make a Booking</button>
                                     </div>
                                 </form>
                                 </div>
                             </div>
-                            </div>                         
-
+                            </div>
                         </div>';
             }
             ?>
@@ -112,7 +114,7 @@ $result = $connect->query($sql);
     </main>
     <!-- Cards: Hotels END -->
 
-    <?php include __DIR__ . "/templates/partials/footer.php"; ?>
+    <?php include __DIR__ . "/templates/footer.php"; ?>
 </body>
 
 </html>
