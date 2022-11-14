@@ -1,4 +1,3 @@
-
 <footer class="container-fluid text-center">
     <div class="container mt-3 pt-4">
         <p class="lead m-2 text">See our getaway socials!</p>
