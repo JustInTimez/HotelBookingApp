@@ -3,6 +3,9 @@
 <?php
 
 include __DIR__ . "./templates/header.php";
+include __DIR__ . "/model/Bookings.php";
+
+Booking::showBookings();
 
 ?>
 

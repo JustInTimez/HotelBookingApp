@@ -32,10 +32,6 @@ class User {
 
     // ========================= METHODS =========================
 
-    public function __toString(){
-        return $this;
-    }
-
     public static function userLogin(){
 
         $LoginEmail = trim($_POST['LoginEmail']);
@@ -115,36 +111,40 @@ class User {
     }
 
     public static function userDisplay(){
+        $userId = $_SESSION['LoggedInUser']['id'];
         global $connect;
-        $sql = "SELECT first_name, last_name, email, contact_no, dob  FROM users";
+        $sql = "SELECT id, first_name, last_name, email, contact_no, dob FROM users WHERE id = $userId";
         $result = $connect->query($sql);
 
         if($result) {
 
-            echo '<table>
-            
+            echo '<table class="table table-hover">
+            <thead>
             <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
-            <th>Contact Number</th>
-            <th>DOB</th>
-            </tr>';
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Contact Number</th>
+                <th>DOB</th>
+            </tr>
+            </thead>';
 
-            while ($row = mysqli_fetch_array($result)) {
-                echo '<tr>
-                <td>' . $row['first_name'] . '</td>
-                <td>' . $row['last_name'] . '</td>
-                <td>' . $row['email'] . '</td>
-                <td>' . $row['contact_no'] . '</td>
-                <td>' . $row['dob'] . '</td>
-                </tr>';
+            while ($row = $result->fetch_assoc()) {
+                echo '<tbody>
+                <tr>
+                    <td>' . $row['first_name'] . '</td>
+                    <td>' . $row['last_name'] . '</td>
+                    <td>' . $row['email'] . '</td>
+                    <td>' . $row['contact_no'] . '</td>
+                    <td>' . $row['dob'] . '</td>
+                </tr>
+                </tbody>';
                 
             }
             echo '</table>';
 
         } else {
-            echo "Nah bruh";
+            echo "There was an issue. Please go back one page and try again";
         }
 
     }

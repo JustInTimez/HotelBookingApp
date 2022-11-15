@@ -1,12 +1,7 @@
 <?php
 include __DIR__ . "./head.php";
 include __DIR__ . "/../model/User.php";
-
-// Check if the user is already logged in, if yes then redirect them to homepage
-if(isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] === true){
-    header("location: /home.php");
-    exit;
-  }  
+ 
 ?>
 
 <header>

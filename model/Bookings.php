@@ -1,6 +1,5 @@
 <?php
 include __DIR__ . "../../processes/config.php"; 
-include __DIR__ . "/User.php";
 include __DIR__ . "/../model/Hotels.php";
 
 class Booking {
@@ -15,8 +14,6 @@ class Booking {
 
 
     public function __construct($customer_id, $booking_id, $cost, $hotel_id, $checkin_date, $checkout_date){
-        global $connect;
-
         $this->booking_id = $booking_id;
         $this->customer_id = $customer_id;
         $this->cost = $cost;
@@ -63,7 +60,45 @@ class Booking {
         }
     }
 
-    
+    public static function showBookings(){
+        $userId = $_SESSION['LoggedInUser']['id'];
+        global $connect;
+        $sql = "SELECT booking_id, customer_id, cost, hotel_id, checkin_date, 
+        checkout_date FROM bookings INNER JOIN hotels ON bookings.customer_id = hotels.customer_id";
+        $result = $connect->query($sql);
+        if($result) {
+
+            echo '<table class="table table-hover">
+            <thead>
+            <tr>
+                <th>Booking</th>
+                <th>Place Name</th>
+                <th>Check In Date</th>
+                <th>Check Out Date</th>
+                <th>Total</th>
+            </tr>
+            </thead>';
+
+            while ($row = $result->fetch_assoc()) {
+                echo '<tbody>
+                <tr>
+                    <td>' . $row['booking_id'] . '</td>
+                    <td>' . $row['hotel_id'] . '</td>
+                    <td>' . $row['checkin_date'] . '</td>
+                    <td>' . $row['checkout_date'] . '</td>
+                    <td>' . $row['cost'] . '</td>
+                </tr>
+                </tbody>';
+                
+            }
+            echo '</table>';
+
+        } else {
+            echo "There was an issue. Please go back one page and try again";
+        }
+
+
+    }
 
 
 

@@ -6,10 +6,6 @@ session_start();
 error_reporting(E_ALL);
 ini_set('display_errors', 'On');
 
-// if (!isset($_SESSION['LoggedInUser'])){
-//     header("Location: ./index.php");
-//     die(); 
-// }
 
 ?>
 
