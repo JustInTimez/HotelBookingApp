@@ -13,13 +13,17 @@ class Booking {
     private $checkout_date;
 
 
-    public function __construct($customer_id, $booking_id, $cost, $hotel_id, $checkin_date, $checkout_date){
-        $this->booking_id = $booking_id;
-        $this->customer_id = $customer_id;
-        $this->cost = $cost;
-        $this->hotel_id = $hotel_id;
-        $this->checkin_date = $checkin_date;
-        $this->checkout_date = $checkout_date;
+    public function __construct($booking_id,){
+        global $connect;
+        $sql = "SELECT * FROM bookings WHERE booking_id = $booking_id";
+        $result = $connect->query($sql);
+        $booking = $result->fetch_assoc();
+        $this->booking_id = $booking['booking_id'];
+        $this->customer_id = $booking['customer_id'];
+        $this->cost = $booking['cost'];
+        $this->hotel_id = $booking['hotel_id'];
+        $this->checkin_date = $booking['checkin_date'];
+        $this->checkout_date = $booking['checkout_date'];
         
     }
     
@@ -63,41 +67,50 @@ class Booking {
     public static function showBookings(){
         $userId = $_SESSION['LoggedInUser']['id'];
         global $connect;
-        $sql = "SELECT booking_id, name FROM bookings CROSS JOIN hotels WHERE id = $userId";
+        $sql = "SELECT * FROM bookings JOIN hotels ON bookings.hotel_id = hotels.id WHERE bookings.customer_id = $userId";
         $result = $connect->query($sql);
+
         if($result) {
 
-            echo '<table class="table table-hover">
-            <thead>
-            <tr>
-                <th>Booking</th>
-                <th>Place Name</th>
-                <th>Check In Date</th>
-                <th>Check Out Date</th>
-                <th>Total</th>
-            </tr>
-            </thead>';
+            echo '
+            <div class="table-responsive m-5">
+                <table class="table table-hover table-responsive-md">
+                <thead>
+                <tr>
+                    <th>Booking</th>
+                    <th>Place Name</th>
+                    <th>Check In Date</th>
+                    <th>Check Out Date</th>
+                    <th>Total</th>
+                </tr>
+                </thead>';
 
             while ($row = $result->fetch_assoc()) {
                 $hotel = new Hotel($row["id"]);
+                $booking = new Booking($row["booking_id"]);
                 echo '<tbody class="table-group-divider">
                 <tr>
-                    <td>' . $row['booking_id'] . '</td>
-                    <td>' . $hotel['hotel_id'] . '</td>
-                    <td>' . $row['checkin_date'] . '</td>
-                    <td>' . $row['checkout_date'] . '</td>
-                    <td>' . $row['cost'] . '</td>
+                    <td>'. $booking->booking_id.'</td>
+                    <td>'. $hotel->name .'</td>
+                    <td>'. $booking->checkin_date .'</td>
+                    <td>'. $booking->checkout_date .'</td>
+                    <td>'. $booking->booking_id .' Change this after creating cost</td>
                 </tr>
                 </tbody>';
                 
             }
-            echo '</table>';
+            echo 
+                '</table>
+            </div>';
 
-        } else {
-            echo "There was an issue. Please go back one page and try again";
-        }
+            // Close connection
+            mysqli_close($connect);
 
-
+            } else {
+                echo "There was an issue. Please go back one page and try again";
+                // Close connection
+                mysqli_close($connect);
+            }
     }
 
 
