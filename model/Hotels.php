@@ -43,7 +43,17 @@ class Hotel {
 
 
     // ========================= METHODS =========================
-    
+
+    // takes in duration and calculate whole cost of stay
+    public function calculateCost($numDays) {
+
+        $amount =  $numDays * $this->costPerNight;
+
+        return $amount;
+    }
+
+
+
     public static function getAllHotels(){
         
     }

@@ -44,7 +44,7 @@ $result = $connect->query($sql);
 
                 }
                 echo '
-                        <div class="col-12 col-xl-6 col-md-6">
+                        <div class="col-xl-4 col-md-6">
                             <div class="card border-dark bg-dark text-white shadow h-100">
                                 <img src="./static/images/hotels/' . $hotel->image . '" height="270" class="card-img-top hotel-image" alt="' . $hotel->name . '">
                                 <div class="card-body">
