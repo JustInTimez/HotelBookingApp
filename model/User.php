@@ -146,8 +146,8 @@ class User {
                 }
                 echo 
                     '</table>
-                </div>
-                ';
+                </div>';
+                
                 // Close connection
                 mysqli_close($connect);
 
