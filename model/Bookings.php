@@ -63,8 +63,7 @@ class Booking {
     public static function showBookings(){
         $userId = $_SESSION['LoggedInUser']['id'];
         global $connect;
-        $sql = "SELECT booking_id, customer_id, cost, hotel_id, checkin_date, 
-        checkout_date FROM bookings INNER JOIN hotels ON bookings.customer_id = hotels.customer_id";
+        $sql = "SELECT booking_id, name FROM bookings CROSS JOIN hotels WHERE id = $userId";
         $result = $connect->query($sql);
         if($result) {
 
@@ -80,10 +79,11 @@ class Booking {
             </thead>';
 
             while ($row = $result->fetch_assoc()) {
-                echo '<tbody>
+                $hotel = new Hotel($row["id"]);
+                echo '<tbody class="table-group-divider">
                 <tr>
                     <td>' . $row['booking_id'] . '</td>
-                    <td>' . $row['hotel_id'] . '</td>
+                    <td>' . $hotel['hotel_id'] . '</td>
                     <td>' . $row['checkin_date'] . '</td>
                     <td>' . $row['checkout_date'] . '</td>
                     <td>' . $row['cost'] . '</td>

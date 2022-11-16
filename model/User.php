@@ -93,6 +93,7 @@ class User {
 
             header("Location: ../home.php");
             exit();
+
         } else {
             echo "Error: " . $sql . "<br>" . $connect->error;
 
@@ -118,38 +119,75 @@ class User {
 
         if($result) {
 
-            echo '<table class="table table-hover">
-            <thead>
-            <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Email</th>
-                <th>Contact Number</th>
-                <th>DOB</th>
-            </tr>
-            </thead>';
+                echo '
+                <div class="table-responsive m-5">
+                    <table class="table table-hover table-responsive-md">
+                    <thead>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Email</th>
+                        <th>Contact Number</th>
+                        <th>DOB</th>
+                    </tr>
+                    </thead>';
 
-            while ($row = $result->fetch_assoc()) {
-                echo '<tbody>
-                <tr>
-                    <td>' . $row['first_name'] . '</td>
-                    <td>' . $row['last_name'] . '</td>
-                    <td>' . $row['email'] . '</td>
-                    <td>' . $row['contact_no'] . '</td>
-                    <td>' . $row['dob'] . '</td>
-                </tr>
-                </tbody>';
-                
+                while ($row = $result->fetch_assoc()) {
+                    echo '<tbody class="table-group-divider">
+                    <tr>
+                        <td>' . $row['first_name'] . '</td>
+                        <td>' . $row['last_name'] . '</td>
+                        <td>' . $row['email'] . '</td>
+                        <td>' . $row['contact_no'] . '</td>
+                        <td>' . $row['dob'] . '</td>
+                    </tr>
+                    </tbody>';
+                    
+                }
+                echo 
+                    '</table>
+                </div>
+                ';
+                // Close connection
+                mysqli_close($connect);
+
+            } else {
+                echo "There was an issue. Please go back one page and try again";
+                // Close connection
+                mysqli_close($connect);                
             }
-            echo '</table>';
-
-        } else {
-            echo "There was an issue. Please go back one page and try again";
-        }
 
     }
 
+    public static function userUpdate(){
+        $UpdateEmail = trim($_POST['UpdateEmail']);
+        $UpdateContact = trim($_POST['UpdateNumber']);
+        $UpdateDob = ($_POST['UpdateDob']);
 
+        $userId = $_SESSION['LoggedInUser']['id'];
+        global $connect;
+        $sql = "UPDATE users SET email = '$UpdateEmail', contact_no = '$UpdateContact', dob = '$UpdateDob' WHERE id = '$userId'";
+
+        if ($connect->query($sql) === TRUE) {
+            echo "Profile updated successfully";
+
+            // Close connection
+            mysqli_close($connect);
+
+            header("Location: ../edit-profile.php");
+            exit();
+
+        } else {
+            echo "Error updating database user: " . $sql . "<br>" . $connect->error;
+
+            // Close connection
+            mysqli_close($connect);
+
+            header("Location: ../home.php");
+            exit();
+        }
+
+    }
 
 
     // ==================== GETTERS & SETTERS ====================
