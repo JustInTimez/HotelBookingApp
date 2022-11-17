@@ -23,7 +23,7 @@ As a user, you are able to:
 - Please find the export of the database in the folder named **/for-lecturer**
 - Import the database so that you may use it with your AMP software and PHP MyAdmin with this project
 
-You will need to either login or register first. For testing purposes, please use these creds to test admin login feature (staff role): _justin@woohoo.com_ | _12345_
-Alternatively, create a user account and you will be directed to the home page!
-You will now have access to view the current list of hotels/accommodation.
+You will need to either login or register first. For testing purposes, please use these creds to test admin login feature (staff role): _justin@woohoo.com_ | _12345_<br>
+Alternatively, create a user account and you will be directed to the home page!<br>
+You will now have access to view the current list of hotels/accommodation.<br>
 Click the Details button to view more info of the accommodation and to make a **booking**
