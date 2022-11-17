@@ -9,11 +9,13 @@ Use to compare hotels/accommodation and make a booking
 As a user, you are able to:
 
 - [x] Register and/or login to the client site | customer and staff roles assigned
+- [x] Edit some of your user profile information
 - [x] Compare accommodation (visually)
 - [x] Make bookings
 - [x] View bookings
 - [ ] Cancel bookings (if before 48hrs of arrival date)
-- [x] Edit some of your user profile information
+- [ ] Admin access to CMS pages (normal customers to not be able to access)
+
 
 
 ## Using the site/app
