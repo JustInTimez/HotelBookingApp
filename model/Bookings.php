@@ -7,7 +7,6 @@ class Booking {
     // ========================= FIELDS =========================
     private $customer_id;
     private $booking_id;
-    private $cost;
     private $hotel_id;
     private $checkin_date;
     private $checkout_date;
@@ -20,18 +19,14 @@ class Booking {
         $booking = $result->fetch_assoc();
         $this->booking_id = $booking['booking_id'];
         $this->customer_id = $booking['customer_id'];
-        $this->cost = $booking['cost'];
         $this->hotel_id = $booking['hotel_id'];
         $this->checkin_date = $booking['checkin_date'];
         $this->checkout_date = $booking['checkout_date'];
+
         
     }
     
     // ========================= METHODS =========================
-
-    public function costCalc($cost){
-        return $this->cost = $this->checkout_date - $this->checkin_date;
-    }
 
     public static function createBooking(){
         
@@ -39,11 +34,10 @@ class Booking {
         $hotelId = $_POST['hotelId'];
         $checkInDate = $_POST['checkIn'];
         $checkOutDate = $_POST['checkOut'];
-        $cost = 0;  // For now. Amend to calc cost
 
         // Performing insert query into DB table bookings
         global $connect;
-        $sql = "INSERT INTO bookings (customer_id, cost, hotel_id, checkin_date, checkout_date) VALUES ('$userId', '$cost', '$hotelId', '$checkInDate', '$checkOutDate')";
+        $sql = "INSERT INTO bookings (customer_id, hotel_id, checkin_date, checkout_date) VALUES ('$userId', '$hotelId', '$checkInDate', '$checkOutDate')";
         if ($connect->query($sql) === TRUE) {
             echo "Booking created successfully";
 
@@ -77,24 +71,26 @@ class Booking {
                 <table class="table table-hover table-responsive-md">
                 <thead>
                 <tr>
-                    <th>Booking</th>
+                    <th>Booking No</th>
                     <th>Place Name</th>
                     <th>Check In Date</th>
                     <th>Check Out Date</th>
-                    <th>Total</th>
+                    <th>Total Paid</th>
                 </tr>
-                </thead>';
+                </thead>
+                <tbody class="table-group-divider">';
 
             while ($row = $result->fetch_assoc()) {
                 $hotel = new Hotel($row["id"]);
                 $booking = new Booking($row["booking_id"]);
-                echo '<tbody class="table-group-divider">
+                $numDays = self::calculateNumDays($booking->checkin_date, $booking->checkout_date);
+                echo '
                 <tr>
-                    <td>'. $booking->booking_id.'</td>
+                    <td>'. $booking->booking_id. '</td>
                     <td>'. $hotel->name .'</td>
                     <td>'. $booking->checkin_date .'</td>
                     <td>'. $booking->checkout_date .'</td>
-                    <td>'. $booking->booking_id .' Change this after creating cost</td>
+                    <td>R '. self::calculateCostOfStay($numDays, $hotel->price) .'</td>
                 </tr>
                 </tbody>';
                 
@@ -108,21 +104,33 @@ class Booking {
 
             } else {
                 echo "There was an issue. Please go back one page and try again";
+
                 // Close connection
                 mysqli_close($connect);
             }
     }
 
+    
+    // Method that calculates duration of stay
+    public static function calculateNumDays($checkin_date, $checkout_date) {
+        
+        // Calculating the difference in timestamps
+        $diff = strtotime($checkout_date) - strtotime($checkin_date);
+        
+        // 1 day = 24 hours  ->  24 * 60 * 60 = 86400 seconds
+        $numDays = abs(round($diff / 86400)) +1;
+        
+        return $numDays;
+    }
+    
+    // Takes in duration and calculate whole cost of stay
+    public static function calculateCostOfStay($numDays, $price) {
 
+            $amount =  $numDays * $price;
 
-
-
-
-
-
-
-
-
+            return $amount;
+    }
+    
     // ==================== GETTERS & SETTERS ====================
 
     public function getBooking_id()
@@ -145,18 +153,6 @@ class Booking {
     public function setCustomer_id($customer_id)
     {
         $this->customer_id = $customer_id;
-
-        return $this;
-    }
-
-    public function getCost()
-    {
-        return $this->cost;
-    }
-
-    public function setCost($cost)
-    {
-        $this->cost = $cost;
 
         return $this;
     }

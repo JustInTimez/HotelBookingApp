@@ -114,7 +114,7 @@ class User {
     public static function userDisplay(){
         $userId = $_SESSION['LoggedInUser']['id'];
         global $connect;
-        $sql = "SELECT id, first_name, last_name, email, contact_no, dob FROM users WHERE id = $userId";
+        $sql = "SELECT * FROM users WHERE id = $userId";
         $result = $connect->query($sql);
 
         if($result) {
@@ -130,10 +130,11 @@ class User {
                         <th>Contact Number</th>
                         <th>DOB</th>
                     </tr>
-                    </thead>';
+                    </thead>
+                    <tbody class="table-group-divider">';
 
                 while ($row = $result->fetch_assoc()) {
-                    echo '<tbody class="table-group-divider">
+                    echo '
                     <tr>
                         <td>' . $row['first_name'] . '</td>
                         <td>' . $row['last_name'] . '</td>
@@ -153,6 +154,7 @@ class User {
 
             } else {
                 echo "There was an issue. Please go back one page and try again";
+                
                 // Close connection
                 mysqli_close($connect);                
             }
