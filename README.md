@@ -8,12 +8,12 @@ Use to compare hotels/accommodation and make a booking
 
 As a user, you are able to:
 
-- Register and/or login to the client site | customer and staff roles assigned - [x]
-- Compare accommodation - [x] (visually)
-- Make bookings - [x]
-- View bookings - [x]
-- Cancel bookings (if before 48hrs of arrival date) - [ ]
-- Edit some of your user profile information - [x]
+- [x] Register and/or login to the client site | customer and staff roles assigned
+- [x] Compare accommodation (visually)
+- [x] Make bookings
+- [x] View bookings
+- [ ] Cancel bookings (if before 48hrs of arrival date)
+- [x] Edit some of your user profile information
 
 
 ## Using the site/app
