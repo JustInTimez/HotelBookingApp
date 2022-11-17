@@ -1,6 +1,7 @@
 <?php
 include __DIR__ . "../../processes/config.php"; 
 
+
 class Hotel {
 
     // ========================= FIELDS =========================
@@ -22,7 +23,7 @@ class Hotel {
 
     public function __construct($id){
         global $connect;
-        $sql = "SELECT id, name, image, address, price, capacity, description, has_wifi, has_ac, has_parking, is_petfriend, has_pool, is_accessible, rating FROM hotels WHERE id = $id";
+        $sql = "SELECT * FROM hotels WHERE id = $id";
         $result = $connect->query($sql);
         $hotel = $result->fetch_assoc();
         $this->id = $hotel['id'];
@@ -43,21 +44,12 @@ class Hotel {
 
 
     // ========================= METHODS =========================
-
-    // takes in duration and calculate whole cost of stay
-    public function calculateCost($numDays) {
-
-        $amount =  $numDays * $this->costPerNight;
-
-        return $amount;
-    }
-
+    
 
 
     public static function getAllHotels(){
         
     }
-
 
 
     // ==================== GETTERS & SETTERS ====================

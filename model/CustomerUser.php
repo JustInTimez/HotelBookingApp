@@ -9,7 +9,7 @@ class Customer extends User {
     private $dob;
 
     public function __construct($contactnumber, $dob, $id, $firstname, $lastname, $email, $password) {
-        parent::__construct($id, $firstname, $lastname, $email, $password);
+        
 
         $this->contactnumber = $contactnumber;
         $this->dob = $dob;

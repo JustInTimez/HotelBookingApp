@@ -3,6 +3,14 @@
     box-sizing: border-box;
 }
 
+body {
+    text-align: center;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    grid-gap: 20px;
+    min-height: 100vh;
+}
+
 #RegNameErr,
 #RegEmailErr,
 #RegPassErr {
