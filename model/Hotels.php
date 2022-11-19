@@ -136,6 +136,11 @@ class Hotel
             }
         }
     }
+
+    public function compareHotels() {
+        
+    }
+
     // ==================== GETTERS & SETTERS ====================
 
 

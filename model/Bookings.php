@@ -10,7 +10,6 @@ class Booking {
     private $hotel_id;
     private $checkin_date;
     private $checkout_date;
-    private $is_cancelled;
 
 
 
@@ -24,8 +23,6 @@ class Booking {
         $this->hotel_id = $booking['hotel_id'];
         $this->checkin_date = $booking['checkin_date'];
         $this->checkout_date = $booking['checkout_date'];
-        $this->is_cancelled = $booking['is_cancelled'];
-
         
     }
     
@@ -37,13 +34,12 @@ class Booking {
         $hotelId = $_POST['hotelId'];
         $checkInDate = $_POST['checkIn'];
         $checkOutDate = $_POST['checkOut'];
-        $is_cancelled = false;
         
 
         // Performing insert query into DB table bookings
         global $connect;
         $sql = "INSERT INTO bookings (customer_id, hotel_id, checkin_date, 
-        checkout_date, is_cancelled) VALUES ('$userId', '$hotelId', '$checkInDate', '$checkOutDate', '$is_cancelled')";
+        checkout_date) VALUES ('$userId', '$hotelId', '$checkInDate', '$checkOutDate')";
         if ($connect->query($sql) === TRUE) {
             echo "Booking created successfully";
 
@@ -259,18 +255,6 @@ class Booking {
     public function setCheckout_date($checkout_date)
     {
         $this->checkout_date = $checkout_date;
-
-        return $this;
-    }
-
-    public function getIs_cancelled()
-    {
-        return $this->is_cancelled;
-    }
-
-    public function setIs_cancelled($is_cancelled)
-    {
-        $this->is_cancelled = $is_cancelled;
 
         return $this;
     }
