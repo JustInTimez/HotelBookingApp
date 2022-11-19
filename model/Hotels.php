@@ -73,6 +73,63 @@ class Hotel
                         <div class="card border-dark bg-dark text-white shadow h-100">
                             <img src="./static/images/hotels/' . $hotel->image . '" height="270" class="card-img-top hotel-image" alt="' . $hotel->name . '">
                             <div class="card-body">
+                                <h5 class="card-title">' . $hotel->name . '</h5>
+                                    <div class="d-flex" >
+                                        <div class="d-flex flex-column">
+                                                <p class="card-text small">Facilities</p>
+                                            <div>' . $facilityIcons . '</div>
+                                            
+                                            <div class="mt-5">
+                                                <form action="./confirm-booking.php" method="post">
+                                                    <input type="hidden" name="hotelId" value="' . $hotel->id . '">
+                                                    <button type="submit" name="Submit" class="btn btn-light"><i>Book!</i></button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex flex-column align-items-end flex-fill justify-content-end">
+                                            <p class="display-5 lh-1 mb-1">R ' . $hotel->price . '</p><span class="small mb-0">per night (sleeps: ' . $hotel->capacity . ')</span>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>';
+            }
+        }
+    }
+
+    public static function getSelectedHotel(){
+        // Get hotel ID from hidden input field in modal form
+        $hotelId = $_POST['hotelId'];
+
+        global $connect;
+        $sql = "SELECT id FROM hotels WHERE id = $hotelId";
+        $result = $connect->query($sql);
+        
+        $result = $connect->query($sql);
+
+        if ($result) {
+            while ($row = $result->fetch_assoc()) {
+                $hotel = new Hotel($row["id"]);
+                $facilities = [
+                    'has_wifi' => ['show' => $hotel->has_wifi, 'icon' => 'wifi-solid.svg'],
+                    'has_ac' => ['show' => $hotel->has_ac, 'icon' => 'snowflake-solid.svg'],
+                    'has_parking' => ['show' => $hotel->has_parking, 'icon' => 'square-parking-solid.svg'],
+                    'is_petfriend' =>  ['show' => $hotel->is_petfriend, 'icon' => 'paw-solid.svg'],
+                    'has_pool' =>  ['show' => $hotel->has_pool, 'icon' => 'water-ladder-solid.svg'],
+                    'is_accessible' =>  ['show' => $hotel->is_accessible, 'icon' => 'wheelchair-solid.svg']
+                ];
+
+                $facilityIcons = "";
+                foreach ($facilities as $key => $value) {
+                    if ($value['show'] == 1) {
+                        $facilityIcons .= '<img class="me-3" src="./static/images/hotels/facility-icons/' . $value["icon"] . '">';
+                    }
+                }
+                echo '
+                    <div class="col-xl-4 col-md-6 mx-auto">
+                        <div class="card border-dark bg-dark text-white shadow h-100">
+                            <img src="./static/images/hotels/' . $hotel->image . '" height="270" class="card-img-top hotel-image" alt="' . $hotel->name . '">
+                            <div class="card-body">
                             <h5 class="card-title">' . $hotel->name . '</h5>
                                 <div class="d-flex" >
                                     <div class="d-flex flex-column">
