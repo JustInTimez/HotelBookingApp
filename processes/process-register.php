@@ -5,6 +5,6 @@ ini_set('display_errors', 'On');
 
 session_start();
 include __DIR__ . "/../model/User.php";
-require __DIR__ . "/config.php"; 
+include __DIR__ . "/config.php";
 
 User::userRegister();

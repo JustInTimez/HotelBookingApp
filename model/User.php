@@ -64,8 +64,8 @@ class User {
             // Close connection
             mysqli_close($connect);
 
-            // header("Location: ../index.php");
-            // exit();
+            header("Location: ../index.php");
+            exit();
         }
         return true;
     }
