@@ -98,6 +98,10 @@ class Hotel
     }
 
     public static function getSelectedHotel(){
+        if (!isset($_POST['hotelId'])){
+            header('Location: ./home.php');
+        }
+        
         // Get hotel ID from hidden input field in modal form
         $hotelId = $_POST['hotelId'];
 
@@ -193,9 +197,21 @@ class Hotel
         }
     }
 
+
     public static function compareRelatedHotels() {
+        if (!isset($_POST['hotelId'])){
+            header('Location: ./home.php');
+        }
+        
+        // Get hotel ID from hidden input field in modal form
+        $hotelId = $_POST['hotelId'];
+
+        $hotel = new Hotel($hotelId);
+        $minPrice = $hotel->price - 250;
+        $maxPrice = $hotel->price + 300;
+
         global $connect;
-        $sql = "SELECT id, has_wifi, has_ac, has_parking, is_petfriend, has_pool, is_accessible, rating FROM hotels";
+        $sql = "SELECT * FROM hotels WHERE price >= '$minPrice' AND price <= '$maxPrice' AND id != '$hotelId' LIMIT 3";
         $result = $connect->query($sql);
 
         if ($result) {

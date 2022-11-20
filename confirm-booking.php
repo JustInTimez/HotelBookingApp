@@ -30,7 +30,7 @@ include __DIR__ . "/model/Hotels.php";
     </div>
 
     <!-- Related Accommodations  -->
-    <h2 class="mt-3 text-center">Check out these similar **whatever the filter is** places!</h2>
+    <h2 class="mt-4 text-center">Check out these similar <u>priced</u> places!</h2>
     <div class="row row-cols-1 row-cols-lg-3 g-5 m-0">
         <? Hotel::compareRelatedHotels(); ?>
     </div>
