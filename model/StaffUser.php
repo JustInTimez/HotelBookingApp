@@ -9,7 +9,6 @@ class Staff extends User {
     private $department;
 
     public function __construct($role, $department, $id, $firstname, $lastname, $email, $password){
-
         $this->role = $role;
         $this->department = $department;
     }
@@ -21,7 +20,6 @@ class Staff extends User {
 
 
     // ==================== GETTERS & SETTERS ====================
-
 
     public function getRole()
     {

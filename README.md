@@ -15,14 +15,15 @@ As a user, you are able to:
 - [x] View bookings
 - [x] Cancel bookings (if before 48hrs of arrival date)
 
-Not yet finished:
+What I want to add in the future:
 - [ ] Admin access to CMS pages (normal customers to not be able to access)
+- [ ] Customer can add their accommodation (after approval from a staff/admin member)
 
 
 
 ## Using the site/app
 
-- Please find the export of the database in the folder named **/for-lecturer**
+- Please find the export of the database in the folder path **/processes/sql_export/**
 - Import the database so that you may use it with your AMP software and PHP MyAdmin with this project
 
 You will need to either login or register first.<br>

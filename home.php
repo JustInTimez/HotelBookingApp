@@ -9,6 +9,7 @@ include __DIR__ . "./templates/header.php";
 
 
 <body>
+
     <main>
         <!-- Hero -->
         <div class="jumbotron jumbotron-fluid text-center bg-light d-flex align-items-center justify-content-center">
@@ -20,15 +21,14 @@ include __DIR__ . "./templates/header.php";
         <!-- Hero END -->
 
         <!-- Cards: Hotels -->
-
         <div class="row row-cols-1 row-cols-lg-3 g-5 m-0">
             <? Hotel::getAllHotels(); ?>
         </div>
-
         <!-- Cards: Hotels END -->
 
     </main>
     <?php include __DIR__ . "/templates/footer.php"; ?>
+
 </body>
 
 </html>

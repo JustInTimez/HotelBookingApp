@@ -5,16 +5,13 @@
 include __DIR__ . "./templates/header.php";
 
 User::userDisplay();
-// $userId = $_SESSION['LoggedInUser']['id'];
-
 
 ?>
-
-
 
 <body>
     
     <h1 class="text-center mb-3">Need to update your details?</h1>
+
         <div class="container text-center">
             <div class="row">
                 <div class="col-lg-12">
@@ -38,5 +35,7 @@ User::userDisplay();
         </div>
 
     <?php include __DIR__ . "/templates/footer.php"; ?>
+
 </body>
+
 </html>
