@@ -16,6 +16,7 @@ As a user, you are able to:
 - [x] Cancel bookings (if before 48hrs of arrival date)
 
 What I want to add in the future:
+- [ ] Stricter validation all around
 - [ ] Admin access to CMS pages (normal customers to not be able to access)
 - [ ] Customer can add their accommodation (after approval from a staff/admin member)
 
