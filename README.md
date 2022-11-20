@@ -26,6 +26,7 @@ What I want to add in the future:
 
 - Please find the export of the database in the folder path **/processes/sql_export/**
 - Import the database so that you may use it with your AMP software and PHP MyAdmin with this project
+- Additionally, copy the folder to your htdocs folder and host it via your AMP software.
 
 You will need to either login or register first.<br>
 For testing purposes, please use these creds to test admin login feature (staff role): _justin@woohoo.com_ | _12345_<br>
