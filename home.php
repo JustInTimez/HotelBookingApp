@@ -13,7 +13,7 @@ include __DIR__ . "./templates/header.php";
         <!-- Hero -->
         <div class="jumbotron jumbotron-fluid text-center bg-light d-flex align-items-center justify-content-center">
             <div class="container mt-5">
-                <h1 class="mb-3">Looking for a place to stay?</h1>
+                <h1 class="mb-3 mt-5">Looking for a place to stay?</h1>
                 <p class="mb-3">Compare our accommodation options!</p>
             </div>
         </div>

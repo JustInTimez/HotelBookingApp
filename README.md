@@ -13,7 +13,9 @@ As a user, you are able to:
 - [x] Compare accommodation (visually)
 - [x] Make bookings
 - [x] View bookings
-- [ ] Cancel bookings (if before 48hrs of arrival date)
+- [x] Cancel bookings (if before 48hrs of arrival date)
+
+Not yet finished:
 - [ ] Admin access to CMS pages (normal customers to not be able to access)
 
 
