@@ -10,7 +10,7 @@ As a user, you are able to:
 
 - [x] Register and/or login to the client site | customer and staff roles assigned
 - [x] Edit some of your user profile information
-- [x] Compare accommodation (visually)
+- [x] Compare accommodation options when on confirmation page. Similar priced accommodations will display
 - [x] Make bookings
 - [x] View bookings
 - [x] Cancel bookings (if before 48hrs of arrival date)
