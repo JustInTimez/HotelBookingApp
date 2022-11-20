@@ -6,9 +6,8 @@ include __DIR__ . "./templates/header.php";
 
 ?>
 
-
-
 <body>
+
     <!-- Hero -->
     <div class="jumbotron jumbotron-fluid text-center bg-light d-flex align-items-center justify-content-center">
         <div class="container">
@@ -21,5 +20,7 @@ include __DIR__ . "./templates/header.php";
     <!-- Hero END -->
 
     <?php include __DIR__ . "/templates/footer.php"; ?>
+
 </body>
+
 </html>

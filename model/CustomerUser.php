@@ -8,25 +8,12 @@ class Customer extends User {
     private $contactnumber;
     private $dob;
 
-    public function __construct($contactnumber, $dob, $id, $firstname, $lastname, $email, $password) {
-        
-
+    public function __construct($contactnumber, $dob, $id, $firstname, $lastname, $email, $password) { 
         $this->contactnumber = $contactnumber;
         $this->dob = $dob;
     }
 
     // ========================= METHODS =========================
-
-
-
-
-
-
-
-
-
-
-
 
 
 

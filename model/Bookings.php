@@ -5,13 +5,12 @@ include __DIR__ . "/../model/Hotels.php";
 class Booking {
 
     // ========================= FIELDS =========================
+
     private $customer_id;
     private $booking_id;
     private $hotel_id;
     private $checkin_date;
     private $checkout_date;
-
-
 
     public function __construct($booking_id,){
         global $connect;
@@ -23,7 +22,6 @@ class Booking {
         $this->hotel_id = $booking['hotel_id'];
         $this->checkin_date = $booking['checkin_date'];
         $this->checkout_date = $booking['checkout_date'];
-        
     }
     
     // ========================= METHODS =========================
@@ -34,7 +32,6 @@ class Booking {
         $hotelId = $_POST['hotelId'];
         $checkInDate = $_POST['checkIn'];
         $checkOutDate = $_POST['checkOut'];
-        
 
         // Performing insert query into DB table bookings
         global $connect;
@@ -61,6 +58,7 @@ class Booking {
     }
 
     public static function showBookings(){
+
         $userId = $_SESSION['LoggedInUser']['id'];
         global $connect;
         $sql = "SELECT * FROM bookings JOIN hotels ON bookings.hotel_id = hotels.id WHERE bookings.customer_id = $userId";
@@ -94,8 +92,7 @@ class Booking {
                     <td>'. $booking->checkin_date .'</td>
                     <td>'. $booking->checkout_date .'</td>
                     <td>R '. self::calculateCostOfStay($numDays, $hotel->price) .'</td>
-                    <td>
-                    <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#cancelModal' . $hotel->id . '">
+                    <td><button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#cancelModal' . $hotel->id . '">
                     Cancel?
                     </button></td>
 
@@ -110,15 +107,14 @@ class Booking {
                             </div>
                             <div class="modal-body">
                                 <img src="./static/images/hotels/' . $hotel->image . '" height="270" class="card-img-top hotel-image" alt="' . $hotel->name . '">
-                                <div>
-                                <p class="fs-3">We\'re sad to see you cancel!</p>
+                                <div>                      
+                                    <p class="fs-3">We\'re sad to see you cancel!</p>
 
-                                <p class="fs-6">Please note that cancellations can only be done <i>48hrs prior to arival</i>.<br><br>
-                                Should you choose to cancel, we will check your validity and inform you.
-                                </p>
-                                <p class="fs-5 text-center">Are you sure you\'d like to cancel?</p>
-                                <input type="hidden" name="bookigId" value="' . $booking->booking_id . '">
-                                       
+                                    <p class="fs-6">Please note that cancellations can only be done <i>48hrs prior to arival</i>.<br><br>
+                                    Should you choose to cancel, we will check your validity and inform you.
+                                    </p>
+                                    <p class="fs-5 text-center">Are you sure you\'d like to cancel?</p>
+                                    <input type="hidden" name="bookigId" value="' . $booking->booking_id . '">
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -129,9 +125,9 @@ class Booking {
                         </div>
                     </div>
                     </div>
-                </div>
-                    </tr>
-                    </tbody>';
+                </tr>
+            </div>
+                </tbody>';
                     
             }
             echo '
@@ -142,6 +138,7 @@ class Booking {
             mysqli_close($connect);
 
             } else {
+
                 echo "There was an issue. Please go back one page and try again";
 
                 // Close connection
@@ -153,7 +150,7 @@ class Booking {
     // Method that calculates duration of stay
     public static function calculateNumDays($checkin_date, $checkout_date) {
         
-        // Calculating the difference in timestamps
+        // Calculating the difference in time
         $diff = strtotime($checkout_date) - strtotime($checkin_date);
         
         // 1 day = 24 hours  ->  24 * 60 * 60 = 86400 seconds
@@ -171,22 +168,25 @@ class Booking {
     }
 
     public static function cancelBooking($booking_id){
+
         global $connect;
         $booking = new Booking($booking_id);
         $numDays = self::calculateNumDays($booking->checkin_date, 'now');
-        if ($numDays > 2){
+
+        if ($numDays > 2) {
             $sql = "DELETE FROM bookings WHERE booking_id = $booking_id";
 
             if ($connect->query($sql) === TRUE) {
 
-            // Close connection
-            mysqli_close($connect);
+                // Close connection
+                mysqli_close($connect);
 
-            header("Location: ../view-bookings.php");
-            exit();
-
+                header("Location: ../view-bookings.php");
+                exit();
             }
+
         } else {
+
             echo "Error: <br>" . $connect->error;
 
             // Close connection

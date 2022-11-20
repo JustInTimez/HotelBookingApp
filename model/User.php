@@ -15,7 +15,6 @@ class User {
     private $department;
     private $role;
 
-
     public function __construct($id, $firstname, $lastname, $email, $password, $contact, $dob, $department, $role){
         $this->id = $id;
         $this->firstname = $firstname;
@@ -28,8 +27,6 @@ class User {
         $this->role = $role;
     }
 
-
-
     // ========================= METHODS =========================
 
     public static function userLogin(){
@@ -38,16 +35,13 @@ class User {
         $LoginPassword = trim($_POST['LoginPassword']);
 
         global $connect;
-
         $sql = "SELECT * FROM users WHERE password = '" . $LoginPassword . "'";
         $result = $connect->query($sql);
 
-        if ($result->num_rows == 1) {
+        if ($result->num_rows == 1){
             $user = $result->fetch_assoc();
             $_SESSION['LoggedInUser'] = $user;
 
-
-            // ************ Take out all echo tests such as this one below before HAND IN!! *********** //
             echo "Matched password, logging in...";
 
             // Close connection
@@ -67,6 +61,7 @@ class User {
             header("Location: ../index.php");
             exit();
         }
+
         return true;
     }
 
@@ -85,16 +80,26 @@ class User {
         $sql = "INSERT INTO users (first_name, last_name, email, password, role) VALUES ('$RegfirstName',
         '$ReglastName','$RegEmail','$RegPassword', 'customer')";
 
-        if ($connect->query($sql) === TRUE) {
-            echo "New user created successfully";
+        if ($connect->query($sql) === TRUE){
 
-            // Close connection
-            mysqli_close($connect);
+            $sql = "SELECT * FROM users WHERE password = '" . $RegPassword . "'";
+            $result = $connect->query($sql);
 
-            header("Location: ../home.php");
-            exit();
+            if ($result->num_rows == 1) {
+                $user = $result->fetch_assoc();
+                $_SESSION['LoggedInUser'] = $user;
+            }
+
+        echo "New user created successfully";
+
+        // Close connection
+        mysqli_close($connect);
+
+        header("Location: ../home.php");
+        exit();
 
         } else {
+
             echo "Error: " . $sql . "<br>" . $connect->error;
 
             // Close connection
@@ -106,13 +111,17 @@ class User {
     }
 
     public static function userLogout(){
+
         if(session_destroy()) {
             header("Location: ./index.php");
          }
+
     }
 
     public static function userDisplay(){
+
         $userId = $_SESSION['LoggedInUser']['id'];
+
         global $connect;
         $sql = "SELECT * FROM users WHERE id = $userId";
         $result = $connect->query($sql);
@@ -145,6 +154,7 @@ class User {
                     </tbody>';
                     
                 }
+
                 echo 
                     '</table>
                 </div>';
@@ -153,6 +163,7 @@ class User {
                 mysqli_close($connect);
 
             } else {
+
                 echo "There was an issue. Please go back one page and try again";
                 
                 // Close connection
@@ -162,6 +173,7 @@ class User {
     }
 
     public static function userUpdate(){
+        
         $UpdateEmail = trim($_POST['UpdateEmail']);
         $UpdateContact = trim($_POST['UpdateNumber']);
         $UpdateDob = ($_POST['UpdateDob']);
@@ -180,6 +192,7 @@ class User {
             exit();
 
         } else {
+
             echo "Error updating database user: " . $sql . "<br>" . $connect->error;
 
             // Close connection
@@ -194,12 +207,10 @@ class User {
 
     // ==================== GETTERS & SETTERS ====================
 
-
     public function getId()
     {
         return $this->id;
     }
-
 
     public function setId($id)
     {
@@ -208,12 +219,10 @@ class User {
         return $this;
     }
 
-
     public function getFirstname()
     {
         return $this->firstname;
     }
-
 
     public function setFirstname($firstname)
     {
@@ -222,12 +231,10 @@ class User {
         return $this;
     }
 
-
     public function getLastname()
     {
         return $this->lastname;
     }
-
 
     public function setLastname($lastname)
     {
@@ -236,12 +243,10 @@ class User {
         return $this;
     }
 
-
     public function getEmail()
     {
         return $this->email;
     }
-
 
     public function setEmail($email)
     {
@@ -250,12 +255,10 @@ class User {
         return $this;
     }
 
-
     public function getPassword()
     {
         return $this->password;
     }
-
 
     public function setPassword($password)
     {
@@ -263,7 +266,6 @@ class User {
 
         return $this;
     }
-
     public function getContact()
     {
         return $this->contact;
